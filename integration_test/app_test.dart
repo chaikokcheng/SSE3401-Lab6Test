@@ -7,40 +7,40 @@ import 'package:mad_lab5/main.dart' as app;
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Complete onboarding process', (tester) async {
-    app.main();
-    await tester.pumpAndSettle();
+  group('Onboarding Integration Tests', () {
+    testWidgets('Complete onboarding process', (WidgetTester tester) async {
+      app.main();
+      await tester.pumpAndSettle();
 
-    // Verify the onboarding page is shown
-    expect(find.text('Welcome !'), findsOneWidget);
+      // Assuming the 'Welcome !' text uniquely identifies the onboarding screen
+      expect(find.text('Welcome !'), findsOneWidget);
 
-    // Enter the phone number and check the checkbox
-    await tester.enterText(find.byType(TextField).first, '109996666');
-    await tester.pumpAndSettle();
-    await tester.tap(find.byType(Checkbox));
-    await tester.pumpAndSettle();
+      var phoneField = find.widgetWithText(TextField, 'Phone Number');
+      var otpField = find.widgetWithText(TextField, 'OTP');
 
-    // Tap on the 'Get Activation Code' button
-    await tester
-        .tap(find.widgetWithText(ElevatedButton, 'Get Activation Code'));
-    await tester.pumpAndSettle();
+      await tester.enterText(phoneField, '1234567890');
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(Checkbox));
+      await tester.pumpAndSettle();
 
-    // Check if the OTP input is visible
-    expect(find.text('Enter the activation code you received via SMS.'),
-        findsOneWidget);
+      var getActivationCodeButton =
+          find.widgetWithText(ElevatedButton, 'Get Activation Code');
+      await tester.tap(getActivationCodeButton);
+      await tester.pumpAndSettle();
 
-    // Enter an OTP
-    await tester.enterText(find.byType(TextField).last, '885566');
-    await tester.pumpAndSettle();
+      expect(find.text('Enter the activation code you received via SMS.'),
+          findsOneWidget);
 
-    // Ensure 'Activate' button is visible before attempting to tap
-    expect(find.text('Activate'), findsOneWidget);
+      await tester.enterText(otpField, '123456');
+      await tester.pumpAndSettle();
 
-    // Tap on 'Activate' button
-    await tester.tap(find.text('Activate'));
-    await tester.pumpAndSettle();
+      var activateButton = find.text('Activate');
+      expect(activateButton, findsOneWidget);
+      await tester.tap(activateButton);
+      await tester.pumpAndSettle();
 
-    // Verify navigation to HomePage
-    expect(find.byType(HomePage), findsOneWidget);
+      // Verify navigation to HomePage
+      expect(find.byType(HomePage), findsOneWidget);
+    });
   });
 }

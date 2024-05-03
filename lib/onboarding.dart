@@ -179,6 +179,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   child: TextField(
                     controller: _phoneController,
                     decoration: const InputDecoration(
+                      labelText: 'Phone Number',
                       border: OutlineInputBorder(),
                       fillColor: Colors.white,
                       filled: true,
