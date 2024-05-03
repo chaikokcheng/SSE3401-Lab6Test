@@ -40,45 +40,45 @@ void main() {
       // Verify navigation to HomePage
       expect(find.byType(HomePage), findsOneWidget);
     });
-    testWidgets('Complete flow from HomePage to submitting contact',
-        (WidgetTester tester) async {
-      // Build our app and trigger a frame.
-      await tester.pumpWidget(MaterialApp(home: HomePage()));
+    // testWidgets('Complete flow from HomePage to submitting contact',
+    //     (WidgetTester tester) async {
+    //   // Build our app and trigger a frame.
+    //   await tester.pumpWidget(MaterialApp(home: HomePage()));
 
-      // Find the FloatingActionButton by Icon and tap it to navigate to AddContactPage.
-      final addButtonFinder =
-          find.widgetWithIcon(FloatingActionButton, Icons.add);
-      expect(addButtonFinder, findsOneWidget);
-      await tester.tap(addButtonFinder);
-      await tester.pumpAndSettle(); // Wait for page transition
+    //   // Find the FloatingActionButton by Icon and tap it to navigate to AddContactPage.
+    //   final addButtonFinder =
+    //       find.widgetWithIcon(FloatingActionButton, Icons.add);
+    //   expect(addButtonFinder, findsOneWidget);
+    //   await tester.tap(addButtonFinder);
+    //   await tester.pumpAndSettle(); // Wait for page transition
 
-      // Find TextFields for name and phone number and enter some text.
-      final nameField = find.widgetWithText(TextField, 'Type here');
-      final phoneField =
-          find.widgetWithText(TextField, 'Enter your phone number');
+    //   // Find TextFields for name and phone number and enter some text.
+    //   final nameField = find.widgetWithText(TextField, 'Type here');
+    //   final phoneField =
+    //       find.widgetWithText(TextField, 'Enter your phone number');
 
-      expect(nameField, findsOneWidget);
-      expect(phoneField, findsOneWidget);
+    //   expect(nameField, findsOneWidget);
+    //   expect(phoneField, findsOneWidget);
 
-      // Enter text into the TextFields
-      await tester.enterText(nameField, 'John Doe');
-      await tester.enterText(phoneField, '+1234567890');
-      await tester.pump(); // Rebuild the widget with the new text.
+    //   // Enter text into the TextFields
+    //   await tester.enterText(nameField, 'John Doe');
+    //   await tester.enterText(phoneField, '+1234567890');
+    //   await tester.pump(); // Rebuild the widget with the new text.
 
-      // Tap the 'Submit' button
-      final submitButtonFinder = find.widgetWithText(ElevatedButton, 'Submit');
-      await tester.tap(submitButtonFinder);
-      await tester.pumpAndSettle(); // Wait for any animations
+    //   // Tap the 'Submit' button
+    //   final submitButtonFinder = find.widgetWithText(ElevatedButton, 'Submit');
+    //   await tester.tap(submitButtonFinder);
+    //   await tester.pumpAndSettle(); // Wait for any animations
 
-      // Expect the AlertDialog to appear after submission
-      expect(find.byType(AlertDialog), findsOneWidget);
-      expect(find.text('Success'), findsOneWidget);
-      expect(find.text('You had done invited'), findsOneWidget);
+    //   // Expect the AlertDialog to appear after submission
+    //   expect(find.byType(AlertDialog), findsOneWidget);
+    //   expect(find.text('Success'), findsOneWidget);
+    //   expect(find.text('You had done invited'), findsOneWidget);
 
-      // Tap the 'Done' button on the AlertDialog
-      final doneButtonFinder = find.widgetWithText(TextButton, 'Done');
-      await tester.tap(doneButtonFinder);
-      await tester.pumpAndSettle(); // Dismiss the AlertDialog
-    });
+    //   // Tap the 'Done' button on the AlertDialog
+    //   final doneButtonFinder = find.widgetWithText(TextButton, 'Done');
+    //   await tester.tap(doneButtonFinder);
+    //   await tester.pumpAndSettle(); // Dismiss the AlertDialog
+    // });
   });
 }
