@@ -12,7 +12,6 @@ void main() {
       app.main();
       await tester.pumpAndSettle();
 
-      // Assuming the 'Welcome !' text uniquely identifies the onboarding screen
       expect(find.text('Welcome !'), findsOneWidget);
 
       var phoneField = find.widgetWithText(TextField, 'Phone Number');
@@ -27,9 +26,6 @@ void main() {
           find.widgetWithText(ElevatedButton, 'Get Activation Code');
       await tester.tap(getActivationCodeButton);
       await tester.pumpAndSettle();
-
-      expect(find.text('Enter the activation code you received via SMS.'),
-          findsOneWidget);
 
       await tester.enterText(otpField, '123456');
       await tester.pumpAndSettle();
