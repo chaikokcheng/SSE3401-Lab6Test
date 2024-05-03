@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:mad_lab5/homepage.dart';
-import 'package:mad_lab5/main.dart';
+import 'package:mad_lab5/main.dart' as app;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('Onboarding Integration Tests', () {
     testWidgets('Complete onboarding process', (WidgetTester tester) async {
-      await tester.pumpWidget(const MainApp());
+      app.main();
+      await tester.pumpAndSettle();
 
       // Verify the onboarding page is shown
       expect(find.text('Welcome !'), findsOneWidget);
