@@ -12,27 +12,36 @@ void main() {
       app.main();
       await tester.pumpAndSettle();
 
+      // Verify the onboarding page is shown
       expect(find.text('Welcome !'), findsOneWidget);
 
-      var phoneField = find.widgetWithText(TextField, 'Phone Number');
-      var otpField = find.widgetWithText(TextField, 'OTP');
-
-      await tester.enterText(phoneField, '1234567890');
+      // Enter phone number
+      await tester.enterText(
+          find.widgetWithText(TextField, 'Phone Number'), '1234567890');
       await tester.pumpAndSettle();
+
+      // Check the checkbox to agree to the terms
       await tester.tap(find.byType(Checkbox));
       await tester.pumpAndSettle();
 
-      var getActivationCodeButton =
-          find.widgetWithText(ElevatedButton, 'Get Activation Code');
-      await tester.tap(getActivationCodeButton);
+      await tester.testTextInput.receiveAction(TextInputAction.done);
       await tester.pumpAndSettle();
 
-      await tester.enterText(otpField, '123456');
+      // Tap on the 'Get Activation Code' button
+      await tester
+          .tap(find.widgetWithText(ElevatedButton, 'Get Activation Code'));
       await tester.pumpAndSettle();
 
-      var activateButton = find.text('Activate');
-      expect(activateButton, findsOneWidget);
-      await tester.tap(activateButton);
+      // Enter OTP
+      await tester.enterText(find.widgetWithText(TextField, 'OTP'), '123456');
+      await tester.pumpAndSettle();
+
+      // Hide the keyboard and ensure UI has settled after the keyboard is dismissed
+      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await tester.pumpAndSettle();
+
+      // Tap on 'Activate' button
+      await tester.tap(find.text('Activate'));
       await tester.pumpAndSettle();
 
       // Verify navigation to HomePage
