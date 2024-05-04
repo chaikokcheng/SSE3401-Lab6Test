@@ -452,19 +452,19 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Text(title,
               style:
                   const TextStyle(fontSize: 18, fontWeight: FontWeight.normal)),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           AspectRatio(
             aspectRatio: 16 / 9,
             child: Image.asset(path, fit: BoxFit.cover),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
