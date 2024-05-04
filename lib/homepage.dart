@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             automaticallyImplyLeading: false,
             actions: <Widget>[
               IconButton(
-                icon: const Icon(Icons.settings),
+                icon: const Icon(Icons.settings_outlined),
                 onPressed: () {
                   setState(() {
                     factory = (factory + 1) % 3;
