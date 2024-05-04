@@ -1,3 +1,4 @@
-# mad_lab5
+# CICD Pipeline for MAD Lab 5
 
-A new Flutter project.
+217463 Chai Kok Cheng
+SSE3308 Lab 6
