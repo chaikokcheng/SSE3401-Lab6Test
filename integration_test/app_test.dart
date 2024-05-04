@@ -8,7 +8,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('Onboarding Integration Tests', () {
-    testWidgets('Complete onboarding process', (WidgetTester tester) async {
+    testWidgets('Full APP Integration Test', (WidgetTester tester) async {
       app.main();
       await tester.pumpAndSettle();
 
